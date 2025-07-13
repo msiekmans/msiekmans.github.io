@@ -145,13 +145,13 @@
    .nav-tabs .nav-link {
       font-family: 'Roboto', sans-serif;
       border-radius: 5px 5px 0 0;
-      width: 60px;
+      width: 56px;
       text-align: center;
       white-space: nowrap;
       color: #222; /* darker text */
       text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
       border: 1px solid transparent;
-      font-size: 1rem;
+      font-size: 10pt;
       padding-left:1px;
       padding-right:1px;
       margin:0;
