@@ -124,7 +124,7 @@
       margin-left: 1rem;     /* breathing room */
     }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 767px) {
     h2.title {
       
       font-size: 32pt;
