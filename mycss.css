@@ -160,8 +160,8 @@
    .logo {
       float: left;          /* take it out of normal flow */
       position: absolute;    /* makes z‑index effective */
-      top: 2px;
-      left: 0px;
+      top: 1px;
+      left: -10px;
       z-index: 1;           /* higher = on top */
       width: auto;
       height: 105px;
