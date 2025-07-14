@@ -1,0 +1,172 @@
+
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .container-fluid {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* full viewport height */
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    h2.title {
+      position:relative;
+      font-family: 'Fasthand', cursive;
+      font-size: 36pt;
+      font-weight: 400;
+      padding-top: 1.25rem;
+      padding-left: 140px;
+      height:60px;
+      color: #000;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      
+
+    }
+
+    /* Container for h2 + tabs */
+    .top-section {
+      /* background-color: #d0f0c0; light green */
+      background: linear-gradient(
+        150deg,
+        #ff6b73 0%,    /* soft red */
+        #ffe873 30%,   /* pastel yellow */
+        #8df08b 60%,   /* pastel green */
+        #7ac7ff 100%   /* pastel blue */
+      );
+
+      background-size: 1600% 1600%; /* make gradient much bigger */
+      animation: rainbowShift 60s ease-in-out infinite;
+      animation-direction: alternate;
+    }
+
+    @keyframes rainbowShift {
+     0% {
+         background-position: 0% 50%;
+     }
+     100% {
+         background-position: 100% 50%;
+     }
+    }
+
+    /* Tabs background now matches top-section */
+    .nav-tabs {
+      border-bottom: 2px solid black !important;
+      padding-left: 140px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Use Roboto Mono for tabs */
+    .nav-tabs .nav-link {
+      font-family: 'Roboto', sans-serif;
+      border-radius: 10px 10px 0 0;
+      width: 86px;
+      text-align: center;
+      white-space: nowrap;
+      color: #222; /* darker text */
+      text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+      border: 1px solid transparent;
+      font-size: 1rem;
+    }
+
+    /* Active tab style */
+    .nav-tabs .nav-link.active {
+      background-color: #FFF9C4 !important;
+      border-color: #000 #000 #fff !important;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .nav-tabs .nav-item {
+      margin-bottom: -1px;
+    }
+
+    .nav-tabs .nav-link:not(.active):hover {
+      border-color: black;
+      background-color: #f8f9fa;
+      color: #000;
+    }
+
+    /* Content below tabs */
+    .bottom-section {
+      background-color: #fff; /* configurable background for bottom content */
+      background-image: url("paper.jpg");
+      background-position: center center;
+      background-size: cover;
+      padding: 1rem;
+      flex-grow: 1; /* fill remaining space */
+      overflow-y: auto; /* scroll if content is too tall */
+    }
+
+    #musicToggle {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      z-index:100;
+      cursor: pointer;
+    }
+
+    .logo {
+      float: left;          /* take it out of normal flow */
+      position: absolute;    /* makes z‑index effective */
+      top: 1px;
+      left: 0px;
+      z-index: 1;           /* lower */
+      width: auto;
+      height: 120px;
+      margin-left: 1rem;     /* breathing room */
+    }
+
+@media screen and (max-width: 767px) {
+    h2.title {
+      
+      font-size: 32pt;
+      padding-top: 1.25rem;
+      padding-left: 100px;
+      height:60px;
+      color: #000;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-tabs {
+      border-bottom: 2px solid black !important;
+      padding-left: 9px;
+      z-index: 2;
+    }
+
+   .nav-tabs .nav-link {
+      font-family: 'Roboto', sans-serif;
+      border-radius: 5px 5px 0 0;
+      width: 56px;
+      text-align: center;
+      white-space: nowrap;
+      color: #222; /* darker text */
+      text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+      border: 1px solid transparent;
+      font-size: 10pt;
+      padding-left:1px;
+      padding-right:1px;
+      margin:0;
+    }
+
+   .logo {
+      float: left;          /* take it out of normal flow */
+      position: absolute;    /* makes z‑index effective */
+      top: 1px;
+      left: -10px;
+      z-index: 1;           /* higher = on top */
+      width: auto;
+      height: 80px;
+      margin-left: 1rem;     /* breathing room */
+    }
+
+
+}
