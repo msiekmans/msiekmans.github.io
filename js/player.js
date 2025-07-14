@@ -5,7 +5,7 @@
   let current  = 0;
 
   /* Load playlist.json */
-  fetch('./js/playlist.json')
+  fetch('/js/playlist.json')
     .then(res => res.json())
     .then(data => {
       playlist = data;
