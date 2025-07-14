@@ -94,7 +94,7 @@
     /* Content below tabs */
     .bottom-section {
       background-color: #fff; /* configurable background for bottom content */
-      background-image: url("./images/paper.jpg");
+      background-image: url("../images/paper.jpg");
       background-position: center center;
       background-size: cover;
       padding: 1rem;
