@@ -61,9 +61,7 @@
       /*font-family: 'Cabin Sketch', cursive;*/
       font-family: 'Roboto', sans-serif;
       font-size:10pt;
-
-
-
+      text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
     }    
 
     @keyframes rainbowShift {
@@ -130,7 +128,7 @@
     #musicToggle {
       position: absolute;
       top: 0px;
-      right: 2px;
+      right: 0px;
       background: none;
       border: none;
       font-size: 24px;
@@ -210,8 +208,8 @@
 
     .nav-tabs {
       border-bottom: 2px solid black !important;
-      padding-left:80px;
-      padding-right:80px;
+      padding-left:1%;
+      padding-right:1%;
       z-index: 2;
     }
 
@@ -232,7 +230,7 @@
     }
 
    .logo {
-      height:80px;     
+      height:42px;     
       width: auto;
     }
 
