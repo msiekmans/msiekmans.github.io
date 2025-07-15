@@ -16,6 +16,8 @@
     html, body {
       height: 100%;
       margin: 0;
+      overscroll-behavior: none; /* Safari 16.4+, Chrome, Firefox      */
+      overflow: hidden;          /* fallback for ancient Safari (<15)  */
     }
 
     .container-fluid {
