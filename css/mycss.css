@@ -14,7 +14,7 @@
     }
 
     html, body {
-      height: 100%;
+      height: 100svh;
       margin: 0;
       overscroll-behavior: none; /* Safari 16.4+, Chrome, Firefox      */
       overflow: hidden;          /* fallback for ancient Safari (<15)  */
