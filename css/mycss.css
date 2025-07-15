@@ -21,7 +21,7 @@
     .container-fluid {
       display: flex;
       flex-direction: column;
-      height: 100vh; /* full viewport height */
+      height: 100svh; /* full viewport height */
       padding-left: 0;
       padding-right: 0;
     }
