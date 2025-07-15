@@ -31,8 +31,8 @@
       font-family: 'Fasthand', cursive;
       font-size: 20pt;
       font-weight: 400;
-      padding-top: 4px;
-      padding-left: 12px;
+      padding-top: 10px;
+      padding-left: 50px;
       color: #000;
       margin-bottom: 1.5rem;
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
@@ -78,9 +78,10 @@
     /* Tabs background now matches top-section */
     .nav-tabs {
       border-bottom: 2px solid black !important;
-      padding-left:17%;
-      padding-right:17%;
-      z-index: 2;
+      padding-top:10px;
+      padding-left:210px;
+      padding-right:210px;
+      z-index: 4;
     }
 
     /* Use Roboto Mono for tabs */
@@ -144,13 +145,13 @@
       left: 0px;
       z-index: 1;           /* lower */
       width: auto;
-      height: 120px;
-      margin-left: 1rem;     /* breathing room */
-      display: none;
+      height: 48px;
+      /*margin-left: 1rem;*/     /* breathing room */
+      /*display: none;*/
 
     }
 
-  .documents-2col {
+  .content-2col {
       /*border-radius: 5px;*/
       /*border:1px black solid;*/
       /*background-color: rgba(144, 238, 144, 0.5);*/
@@ -161,41 +162,7 @@
       margin-bottom:var(--box-bottom-margin);
     }
 
-
-   .documents-3col {
-      /*border-radius: 5px;*/
-      /*border:1px black solid;*/
-      /*background-color: rgba(144, 238, 144, 0.5);*/
-      min-height: var(--box-height);
-      float: left;
-      width: var(--box-width-3col);
-      padding: 1px 4px;
-      margin-bottom:var(--box-bottom-margin);
-    }
-
-   .software-3col {
-      /*border-radius: 5px;*/
-      /*border:1px black solid;*/
-      /*background-color: rgba(144, 238, 144, 0.5);*/
-      min-height: var(--box-height);
-      float: left;
-      width: var(--box-width-3col);
-      padding: 1px 4px;
-      margin-bottom:var(--box-bottom-margin);
-    }
-
-    .misc-2col {
-      /*border-radius: 5px;*/
-      /*border:1px black solid;*/
-      /*background-color: rgba(144, 238, 144, 0.5);*/
-      min-height: var(--box-height);
-      float: left;
-      width: var(--box-width-2col);
-      padding: 1px 4px;
-      margin-bottom:var(--box-bottom-margin);
-    }
-
-    .misc-3col {
+   .content-3col {
       /*border-radius: 5px;*/
       /*border:1px black solid;*/
       /*background-color: rgba(144, 238, 144, 0.5);*/
@@ -243,8 +210,8 @@
 
     .nav-tabs {
       border-bottom: 2px solid black !important;
-      padding-left:1%;
-      padding-right:1%;
+      padding-left:80px;
+      padding-right:80px;
       z-index: 2;
     }
 
@@ -265,17 +232,11 @@
     }
 
    .logo {
-      float: left;          /* take it out of normal flow */
-      position: absolute;    /* makes z‑index effective */
-      top: 1px;
-      left: -10px;
-      z-index: 1;           /* higher = on top */
+      height:80px;     
       width: auto;
-      height: 80px;
-      margin-left: 1rem;     /* breathing room */
     }
 
-    .documents-2col, .documents-3col, .software-3col, .misc-2col, .misc-3col {
+    .content-2col, .content-3col {
       width: 100%;
     }
 }
