@@ -1,8 +1,8 @@
     :root {
       --box-height: 100px;
-      --box-width-2col: 66.6%;
-      --box-width-2colb: 66.6%;
-      --box-width-3col: 33.3%;
+      --box-width-2col: 49.9%;
+      --box-width-2colb: 60%;
+      --box-width-3col: 40%;
       --box-bottom-margin:12px;
       --title-width: 100%;
 
@@ -21,12 +21,7 @@
       overflow: hidden;          /* fallback for ancient Safari (<15)  */
     }
 
-    object, iframe{
-      flex: 1 1 auto;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    
 
     .container-fluid {
       display: flex;
@@ -170,8 +165,6 @@
 
     }
 
-  
-
   .content-2col {
       /*border-radius: 5px;*/
       /*border:1px black solid;*/
@@ -211,7 +204,7 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      /*height:100%;*/
+      height:100%;
     }
 
     .boxtitle {
@@ -228,6 +221,22 @@
       text-align:center;
 
     }
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 9 / 16 = 0.5625 */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
     .spacer {
       text-align: center;
@@ -279,11 +288,13 @@
       width: auto;
     }
 
-    .content-2col, .content-2colb, .content-3col {
+    .content-2col, .content-3col {
       width: 100%;
     }
 
     .content-2colb{
-      padding-bottom: 1em;
+      padding-bottom: 100px;
+      width: 100%;
+      
     }
 }
