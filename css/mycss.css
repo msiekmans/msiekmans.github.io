@@ -1,7 +1,7 @@
     :root {
       --box-height: 100px;
-      --box-width-2col: 50%;
-      --box-width-2colb: 66.6%;
+      --box-width-2col: 49.9%;
+      --box-width-2colb: 49.9%;
       --box-width-3col: 33.3%;
       --box-bottom-margin:12px;
       --title-width: 100%;
@@ -179,6 +179,8 @@
       width: var(--box-width-2col);
       padding: 1px 4px;
       margin-bottom:var(--box-bottom-margin);
+     
+
     }
 
     .content-2colb {
