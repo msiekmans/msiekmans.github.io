@@ -1,7 +1,7 @@
     :root {
       --box-height: 100px;
-      --box-width-2col: 49.9%;
-      --box-width-2colb: 49.9%;
+      --box-width-2col: 49%;
+      --box-width-2colb: 49%;
       --box-width-3col: 33.3%;
       --box-bottom-margin:12px;
       --title-width: 100%;
@@ -188,7 +188,7 @@
       /*border:1px black solid;*/
       /*background-color: rgba(144, 238, 144, 0.5);*/
       min-height: var(--box-height);
-      float: left;
+      float: right;
       width: var(--box-width-2colb);
       padding: 1px 4px;
       margin-bottom:var(--box-bottom-margin);
