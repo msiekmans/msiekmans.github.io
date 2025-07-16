@@ -185,10 +185,8 @@
       width: var(--box-width-2colb);
       padding: 1px 4px;
       margin-bottom:var(--box-bottom-margin);
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      height:100%;
+      
+      
     }
 
 
@@ -201,10 +199,7 @@
       width: var(--box-width-3col);
       padding: 1px 4px;
       margin-bottom:var(--box-bottom-margin);
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      /*height:100%;*/
+      
     }
 
     .boxtitle {
@@ -293,7 +288,6 @@
     }
 
     .content-2colb{
-      padding-bottom: 100px;
       width: 100%;
       
     }
