@@ -43,6 +43,25 @@
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
     }
 
+    .deadline {
+      background-image: url('../images/submit-logo-512.png');
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size: contain;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: #ff0000;
+      text-transform: uppercase;
+      text-align:left;
+      width:100%;
+      padding-left:1em;
+      padding-right:1em;
+      padding-bottom:1em;
+      margin:0;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+    }
+
     /* Container for h2 + tabs */
     .top-section, .footer{
       /* background-color: #d0f0c0; light green */
@@ -214,7 +233,7 @@
       color:white;
       width:var(--title-width);
       text-align:center;
-
+      
     }
 
 .video-container {
