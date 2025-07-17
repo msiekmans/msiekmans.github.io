@@ -12,7 +12,7 @@ function downloadFile(fileUrl, filename, mimeType) {
       const isIOS = /iP(ad|hone|od)/.test(navigator.userAgent);
       if (isIOS) {
         // iOS doesn't support download attribute; fallback
-        window.location.href = blobUrl;
+        window.location.href = fileUrl;
         // alert("iOS detected: Long press and choose 'Save to Files' to download.");
       } else {
         const a = document.createElement('a');
