@@ -50,16 +50,16 @@
       background-size: contain;
       font-family: 'Roboto', sans-serif;
       font-weight: 500;
-      font-size: 1.2rem;
+      /*font-size: 1.2rem;*/
       color: #ff0000;
       text-transform: uppercase;
-      text-align:left;
+      text-align:center;
       width:100%;
       padding-left:1em;
       padding-right:1em;
       padding-bottom:1em;
       margin:0;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+      text-shadow: 1px 0px 0px rgba(0, 0, 0, 1);
     }
 
     /* Container for h2 + tabs */
