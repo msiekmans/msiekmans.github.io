@@ -69,7 +69,6 @@
     </div>
 
     <audio id="audio" controls>
-      <source src="https://star-control.com/fan/music/Mark-Vera/markvera-hyperspace_electro_blast_oc_remix.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
 
@@ -79,6 +78,7 @@
   <script>
     const audio = document.getElementById('audio');
     audio.crossOrigin = "anonymous"; // Must come first
+    audio.src = "https://star-control.com/fan/music/Mark-Vera/markvera-hyperspace_electro_blast_oc_remix.mp3";
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
