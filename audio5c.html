@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frequency Visualizer – Clean with Rotated Text</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-family: monospace, sans-serif;
+      background: black;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      /*background: black;*/
+    }
+
+    audio {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: 100%;
+      height:20px;
+      border-radius: 0px;
+      background: #eee;
+      opacity: 1.0;
+    }
+
+    #musicToggle {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      z-index:100;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <canvas id="canvas"></canvas>
+    <button id="musicToggle">🎵</button>
+    <audio id="audio">
+      <!--<source src="remix.mp3" type="audio/mp3" />-->
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    let showFrequencies = true; // Set false to hide frequency labels
+    let showMaker = true;
+
+    const btn   = document.getElementById('musicToggle');
+    const audio = document.getElementById('audio');
+    audio.crossOrigin = "anonymous"; // Must come first
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    let sourceConnected = false;
+
+    let playlist = [];
+    let current  = 0;
+
+    /* Load playlist.json */
+    fetch('/js/playlist.json')
+      .then(res => res.json())
+      .then(data => {
+        playlist = data;
+        if (playlist.length) {
+          audio.src  = playlist[0];        // preload first track
+          btn.removeAttribute('disabled'); // enable button
+        }
+      })
+      .catch(err => console.error('Playlist load error:', err));
+
+    /* play current track helper */
+  function playTrack(i) {
+    current           = i % playlist.length;
+    audio.src         = playlist[current];
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  /* Button click: toggle play / pause & rewind */
+  btn.addEventListener('click', () => {
+    if (!playlist.length) return;        // safety
+    if (audio.paused) {
+      playTrack(current);
+    } else {
+      audio.pause();
+      current++;
+      audio.currentTime = 0;
+    }
+  });
+
+  /* Auto‑advance when a track ends */
+  audio.addEventListener('ended', () => {
+    if (playlist.length)
+      playTrack(current + 1);
+  });
+
+    function resizeCanvas() {
+      const style = getComputedStyle(canvas);
+      canvas.width = parseInt(style.width, 10);
+      canvas.height = parseInt(style.height, 10);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const minFreq = 20;
+    const maxFreq = 20000;
+    const nyquist = audioContext.sampleRate / 2;
+    const numBars = 31;
+    const logMin = Math.log10(minFreq);
+    const logMax = Math.log10(maxFreq);
+
+    function freqToIndex(freq) {
+      return Math.round(freq / nyquist * bufferLength);
+    }
+
+    function formatFreq(freq) {
+      if (freq >= 1000) {
+        return (freq / 1000).toFixed(freq < 10000 ? 1 : 0) + 'kHz';
+      }
+      return Math.round(freq) + 'Hz';
+    }
+
+    function draw() {
+      requestAnimationFrame(draw);
+
+      analyser.getByteFrequencyData(dataArray);
+
+      const width = canvas.width;
+      const height = canvas.height;
+      const labelHeight = 0; //showFrequencies ? 22 : 22; // increased space for rotated labels
+      const usableHeight = height - labelHeight;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const barGap = 2;
+      const barWidth = (width - (numBars - 1) * barGap) / numBars;
+      
+      let fontSize = 24;
+      if(barWidth>=24 && barWidth<=60){
+        fontSize = 24;
+      }
+      else{
+        fontSize = barWidth;
+      }
+      console.log("barWidth: "+barWidth);
+      ctx.font = `${fontSize}px monospace`;
+      //ctx.font = '24px monospace';
+      ctx.textAlign = 'left';
+      
+      for (let i = 0; i < numBars; i++) {
+        const freqStart = Math.pow(10, logMin + (i / numBars) * (logMax - logMin));
+        const freqEnd = Math.pow(10, logMin + ((i + 1) / numBars) * (logMax - logMin));
+        const startIndex = Math.max(0, freqToIndex(freqStart));
+        const endIndex = Math.min(bufferLength - 1, freqToIndex(freqEnd));
+
+        let sum = 0;
+        let count = 0;
+        for (let j = startIndex; j <= endIndex; j++) {
+          sum += dataArray[j];
+          count++;
+        }
+
+        const avg = count > 0 ? sum / count : 0;
+        const barHeight = (avg / 255) * usableHeight;
+        const x = i * (barWidth + barGap);
+
+        ctx.fillStyle = 'lime';
+        ctx.fillRect(x, usableHeight - barHeight, barWidth, barHeight);
+        const bodyBgColor = getComputedStyle(document.body).backgroundColor;
+        ctx.fillStyle = bodyBgColor;
+
+        if (showFrequencies) {
+          
+          const freqMid = (freqStart + freqEnd) / 2;
+          const label = formatFreq(freqMid);
+          const metrics = ctx.measureText(label);
+          const textHeight = (metrics.actualBoundingBoxAscent || 0) + (metrics.actualBoundingBoxDescent || 0);
+
+          const textX = x + textHeight / 2 + barWidth / 2;
+          const textY = height - 10;
+
+          ctx.save();
+          ctx.translate(textX, textY);
+          ctx.rotate(-Math.PI / 2); // rotate 90 degrees
+          ctx.fillText(label, 0, 0);
+          ctx.restore();
+          
+        }
+        
+      }
+      if (showMaker) {
+        ctx.save()
+ 
+        ctx.font = '32px sans-serif'; // Or specify another family
+        ctx.strokeStyle = 'gold';
+        ctx.fillStyle = '#C0C0C0'; //'#eeeeee'; //'#1E90FF';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top'; // or 'middle' if you want vertical centering
+
+        ctx.strokeText("Frequency Analyzer", canvas.width / 2, 5);
+        //ctx.textAlign = 'left';
+        ctx.font = '12px monospace'; // Or specify another family
+        //ctx.rotate(Math.PI / 2); // rotate 90 degrees
+        //ctx.fillText("Programmed by:", 40, -canvas.width+2);
+        //ctx.fillText("Manasse Siekmans", 40, -canvas.width+15);
+        ctx.fillText("Programmed by: msi11", canvas.width/2, 38);
+
+        ctx.restore();
+        
+      }
+    }
+
+    audio.addEventListener('play', async () => {
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+      if (!sourceConnected) {
+        const source = audioContext.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+        sourceConnected = true;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'x') {
+        showFrequencies = !showFrequencies;
+      }
+      if (e.key.toLowerCase() === 'z') {
+        showMaker = !showMaker;
+      }
+
+    });
+
+    requestAnimationFrame(draw);
+  </script>
+  
+
+</body>
+</html>
