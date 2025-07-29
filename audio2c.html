@@ -62,10 +62,10 @@
   <div class="wrapper">
     <div class="controls">
       <label for="fpsSlider">FPS: <span id="fpsValue">15</span></label>
-      <input type="range" id="fpsSlider" min="5" max="60" value="15" />
+      <input type="range" id="fpsSlider" min="5" max="60" value="30" />
 
       <label for="scaleSlider">Amplitude: <span id="scaleValue">3</span></label>
-      <input type="range" id="scaleSlider" min="1" max="5" value="3" step="0.1" />
+      <input type="range" id="scaleSlider" min="1" max="5" value="1.5" step="0.1" />
     </div>
 
     <audio id="audio" controls>
@@ -103,7 +103,7 @@
     resizeCanvasToCSS();
 
     // === Framerate control ===
-    let fps = 15;
+    let fps = 30;
     let frameInterval = 1000 / fps;
     let lastFrameTime = 0;
 
@@ -118,7 +118,7 @@
     });
 
     // === Scale control ===
-    let scale = 3;
+    let scale = 1.5;
 
     function setScale(newScale) {
       scale = newScale;
