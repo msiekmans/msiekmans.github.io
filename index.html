@@ -240,6 +240,20 @@
 </script>
 
 <script>
+  //cache-busting script for pdf and docx files
+  document.addEventListener("DOMContentLoaded", () => {
+    const fileLinks = document.querySelectorAll("a[href$='.pdf'], a[href$='.docx']");
+    const timestamp = new Date().getTime(); // always changing
+
+    fileLinks.forEach(link => {
+      const url = new URL(link.href, window.location.origin);
+      url.searchParams.set("v", timestamp);
+      link.href = url.toString();
+    });
+  });
+</script>
+  
+<script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/service-worker.js')
@@ -255,4 +269,5 @@
 
 </body>
 </html>
+
 
