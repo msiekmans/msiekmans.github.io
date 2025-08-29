@@ -55,7 +55,7 @@
           <ul>
             <li><a href="./pdf/Week1 Introduction Infrastructure.pdf" target="_blank">Week1 What is an IT infrastructure?</a></li>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
           </ul>
           <div class="boxtitle">Software</div>
           <ul>
@@ -84,7 +84,7 @@
           <ul>
             <li><a href="./pdf/Week2 Hardware and Virtualization.pdf" target="_blank">Week2 Hardware & Virtualization</a></li>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
           </ul>
           <div class="boxtitle">Homework</div>
           <ul>
@@ -105,7 +105,7 @@
           <ul>
             <li><a href="./pdf/Week3 Operating Systems.pdf" target="_blank">Week3 Operating Systems & Containers</a></li>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
           </ul>
           <div class="boxtitle">Homework</div>
           <ul>
@@ -126,7 +126,7 @@
           <ul>
             <li><a href="./pdf/Week4 Networking.pdf" target="_blank">Week4 Networking</a></li>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
           </ul>
           <div class="boxtitle">Homework</div>
           <ul>
@@ -147,7 +147,7 @@
           <ul>
             <li><a href="./pdf/Week5 Backups and Security.pdf" target="_blank">Week5 Backups and Security</a></li>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
           </ul>
           <div class="boxtitle">Homework</div>
           <ul>
@@ -168,7 +168,7 @@
           <ul>
             <li><a href="./pdf/Week6 Cloud Computing.pdf" target="_blank">Week6 Cloud Computing</a></li>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
           </ul>
           <div class="boxtitle">Homework</div>
           <ul>
@@ -188,7 +188,7 @@
           <div class="boxtitle">Documents</div>
           <ul>
             <li><a href="./pdf/Introduction to infrastructures - Assignments.pdf" target="_blank">Assignments document</a></li>
-            <li><a class="downloadLink" download>Download template report</a></li>
+            <li><a id="reportLink" class="downloadLink" download>Download template report</a></li>
             <li><a href="./pdf/Rubrics.pdf" target="_blank">Check the rubrics before submitting</a></li>
           </ul>
           <div class="boxtitle">Homework</div>
@@ -224,17 +224,32 @@
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll(".downloadLink");
+  function updateDownloadLinks(config) {
+    Object.entries(config).forEach(([id, files]) => {
+      const link = document.getElementById(id);
+      if (!link) return;
 
-    links.forEach(link => {
       if (isIOS()) {
-        link.href = "./pdf/Introduction to infrastructures - Template report.pdf";
-        link.download = "Introduction to infrastructures - Template report.pdf";
+        link.href = files.pdf;
+        link.download = files.pdf.split("/").pop();
       } else {
-        link.href = "./pdf/Introduction to infrastructures - Template report.docx";
-        link.download = "Introduction to infrastructures - Template report.docx";
+        link.href = files.docx;
+        link.download = files.docx.split("/").pop();
       }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateDownloadLinks({
+      reportLink: {
+        pdf: "./pdf/Introduction to infrastructures - Template report.pdf",
+        docx: "./pdf/Introduction to infrastructures - Template report.docx"
+      },
+      reportLink_NL: {
+        pdf: "./pdf/Introduction to infrastructures - Template report_NL.pdf",
+        docx: "./pdf/Introduction to infrastructures - Template report_NL.docx"
+      }
+      // add more links here
     });
   });
 </script>
@@ -269,6 +284,7 @@
 
 </body>
 </html>
+
 
 
 
