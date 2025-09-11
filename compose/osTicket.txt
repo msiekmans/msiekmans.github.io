@@ -1,7 +1,7 @@
 ---
 services:
   osticket:
-    image: tiredofit/osticket:3.3.3
+    image: tiredofit/osticket:3.5.2
     container_name: OsTicket
     depends_on:
       - osticket_db
@@ -54,3 +54,4 @@ networks:
     name: osticket-backend-network
   local-network:
     external: true
+
