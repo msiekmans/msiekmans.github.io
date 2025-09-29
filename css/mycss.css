@@ -62,7 +62,7 @@
       text-shadow: 1px 0px 0px rgba(0, 0, 0, 1);
     }
 
-    .tips {
+    .announcement {
       /*font-family: 'Roboto', sans-serif;*/
       font-weight: 500;
       /*font-size: 1.2rem;*/
@@ -326,4 +326,5 @@
       
     }
 }
+
 
