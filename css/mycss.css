@@ -67,7 +67,7 @@
       font-weight: 500;
       /*font-size: 1.2rem;*/
       color: #ff0000;
-      /*text-transform: uppercase;*/
+      text-transform: uppercase;
       text-align:center;
       width:100%;
       padding-left:1em;
@@ -326,5 +326,6 @@
       
     }
 }
+
 
 
