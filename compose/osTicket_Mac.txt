@@ -1,7 +1,7 @@
 ---
 services:
   osticket:
-    image: tiredofit/osticket:3.5.2
+    image: ghcr.io/tiredofit/docker-osticket:3.5.2
     container_name: OsTicket
     depends_on:
       - osticket_db
