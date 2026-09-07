@@ -1,36 +1,28 @@
----
 services:
   osticket:
-    image: ghcr.io/tiredofit/docker-osticket:3.5.2
+    image: ppcm/osticket-server:latest
     container_name: OsTicket
     depends_on:
       - osticket_db
     networks:
       local-network:
-        ipv4_address: 192.168.139.15  # Change as needed for your LAN
+        ipv4_address: 192.168.139.15
       backend-network:
     environment:
       # Database configuration
-      DB_HOST: osticket_db
-      DB_PORT: 3306
-      DB_NAME: my_database_name
-      DB_USER: some_user
-      DB_PASS: some_password
+      MYSQL_HOST: osticket_db
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: my_database_name
+      MYSQL_USER: some_user
+      MYSQL_PASSWORD: some_password
 
       # Admin configuration
-      ADMIN_USER: mike
-      ADMIN_PASS: Welkom#01
-      ADMIN_EMAIL: yourown@email
-      ADMIN_FIRSTNAME: Mike
-      ADMIN_LASTNAME: Sierra
-
-      # Installation config
-      INSTALL_SECRET: mysecret
+      INSTALL_EMAIL: yourown@email
       INSTALL_URL: http://osticket.local
       INSTALL_NAME: Helpdesk
-      CRON_INTERVAL: 1
+      INSTALL_SECRET: mysecret
     volumes:
-      - CHANGE_TO_COMPOSE_DATA_PATH/osticket/config:/var/www/html
+      - CHANGE_TO_COMPOSE_DATA_PATH/osticket/config:/config
     restart: unless-stopped
     
   osticket_db:
@@ -54,4 +46,3 @@ networks:
     name: osticket-backend-network
   local-network:
     external: true
-
